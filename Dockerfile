@@ -15,7 +15,8 @@ RUN mkdir /input /output
 
 COPY monitor.sh .
 
-RUN chmod +x monitor.sh
+# Convert Windows line endings to Unix and make executable
+RUN sed -i 's/\r$//' monitor.sh && chmod +x monitor.sh
 
 # Run the monitor script when the container starts
-CMD ["./monitor.sh"]
+CMD ["/usr/src/kombo/monitor.sh"]
